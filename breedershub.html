@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breeders Hub | Kashmir's Complete Pet Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #FF6B35;
+    --primary-dark: #E55A25;
+    --primary-light: #FF8C5A;
+    --secondary: #1A1A2E;
+    --accent: #FFD166;
+    --surface: #FFFFFF;
+    --surface-2: #FFF8F5;
+    --surface-3: #FFF2EA;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5A5A7A;
+    --text-on-primary: #FFFFFF;
+    --border: rgba(255,107,53,0.15);
+    --shadow-sm: 0 2px 8px rgba(255,107,53,0.1);
+    --shadow-md: 0 8px 24px rgba(255,107,53,0.15);
+    --shadow-lg: 0 16px 48px rgba(255,107,53,0.2);
+    --radius: 20px;
+    --radius-sm: 12px;
+    --radius-pill: 100px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--surface);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: var(--shadow-md); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 44px; height: 44px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 12px rgba(255,107,53,0.35);
+  }
+  .nav-logo-text { font-size: 1.25rem; font-weight: 900; color: var(--text-primary); }
+  .nav-logo-text span { color: var(--primary); }
+
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none; font-weight: 700; font-size: 0.9rem;
+    color: var(--text-secondary); transition: color 0.2s; letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--primary); }
+
+  .nav-cta {
+    background: var(--primary); color: white;
+    border: none; border-radius: var(--radius-pill);
+    padding: 10px 24px; font-size: 0.9rem; font-weight: 800;
+    cursor: pointer; transition: all 0.2s;
+    text-decoration: none; font-family: 'Nunito', sans-serif;
+    box-shadow: 0 4px 12px rgba(255,107,53,0.35);
+  }
+  .nav-cta:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+  /* ===== HERO ===== */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(145deg, #FFF8F5 0%, #FFF2EA 40%, #FFE8D6 100%);
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero-blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); opacity: 0.35;
+    pointer-events: none;
+  }
+  .hero-blob-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #FF6B35, transparent);
+    top: -100px; right: -100px;
+  }
+  .hero-blob-2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, #FFD166, transparent);
+    bottom: 50px; left: 10%;
+  }
+
+  .hero-content {
+    max-width: 600px; position: relative; z-index: 1;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,107,53,0.12); border: 1px solid rgba(255,107,53,0.25);
+    border-radius: var(--radius-pill); padding: 6px 16px;
+    font-size: 0.8rem; font-weight: 800; color: var(--primary);
+    margin-bottom: 28px; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .hero-badge::before { content: '🐾'; font-size: 1rem; }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 800; line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+  }
+  .hero-title em {
+    color: var(--primary); font-style: normal;
+    position: relative;
+  }
+  .hero-title em::after {
+    content: '';
+    position: absolute; bottom: 4px; left: 0; right: 0;
+    height: 4px; background: var(--accent); border-radius: 2px;
+    transform: skewX(-5deg);
+  }
+
+  .hero-desc {
+    font-size: 1.1rem; color: var(--text-secondary);
+    line-height: 1.7; margin-bottom: 36px; max-width: 480px;
+    font-weight: 600;
+  }
+
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 48px; }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; border: none; border-radius: var(--radius-pill);
+    padding: 16px 32px; font-size: 1rem; font-weight: 800;
+    cursor: pointer; transition: all 0.25s; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 6px 20px rgba(255,107,53,0.4);
+    font-family: 'Nunito', sans-serif;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(255,107,53,0.45); }
+
+  .btn-outline {
+    background: transparent; color: var(--primary);
+    border: 2px solid var(--primary); border-radius: var(--radius-pill);
+    padding: 14px 28px; font-size: 1rem; font-weight: 800;
+    cursor: pointer; transition: all 0.25s; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Nunito', sans-serif;
+  }
+  .btn-outline:hover { background: var(--primary); color: white; transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; gap: 36px; flex-wrap: wrap;
+  }
+  .hero-stat .num {
+    font-size: 1.8rem; font-weight: 900; color: var(--primary);
+    line-height: 1;
+  }
+  .hero-stat .lbl {
+    font-size: 0.78rem; font-weight: 700; color: var(--text-secondary);
+    text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;
+  }
+
+  .hero-visual {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    width: 420px;
+    animation: fadeRight 0.9s 0.2s ease both;
+  }
+  .hero-visual-card {
+    background: white; border-radius: 28px;
+    padding: 28px; box-shadow: var(--shadow-lg);
+    position: relative; overflow: hidden;
+  }
+  .hero-visual-card::before {
+    content: ''; position: absolute;
+    top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(255,107,53,0.12), transparent);
+    border-radius: 50%;
+  }
+  .card-pets-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;
+  }
+  .card-pet-item {
+    background: var(--surface-2); border-radius: 16px;
+    padding: 16px; text-align: center;
+    border: 2px solid transparent; transition: all 0.2s; cursor: pointer;
+  }
+  .card-pet-item:hover { border-color: var(--primary); background: white; }
+  .card-pet-item .emoji { font-size: 2.2rem; }
+  .card-pet-item .name { font-size: 0.78rem; font-weight: 800; color: var(--text-secondary); margin-top: 6px; }
+  .card-pet-item .count { font-size: 0.68rem; color: var(--primary); font-weight: 700; }
+  .card-delivery-badge {
+    background: linear-gradient(135deg, var(--primary), #FF8C5A);
+    color: white; border-radius: 12px;
+    padding: 12px 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .card-delivery-badge .icon { font-size: 1.4rem; }
+  .card-delivery-badge .text .t1 { font-size: 0.85rem; font-weight: 800; }
+  .card-delivery-badge .text .t2 { font-size: 0.7rem; opacity: 0.85; margin-top: 1px; }
+
+  /* ===== SECTIONS COMMON ===== */
+  section { padding: 90px 5%; }
+  .section-eyebrow {
+    font-size: 0.78rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--primary); margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 800; color: var(--text-primary); margin-bottom: 16px;
+    line-height: 1.15;
+  }
+  .section-subtitle {
+    font-size: 1.05rem; color: var(--text-secondary);
+    max-width: 560px; line-height: 1.7; font-weight: 600;
+  }
+  .section-header { margin-bottom: 56px; }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-subtitle { margin: 0 auto; }
+
+  /* ===== FEATURES ===== */
+  #features { background: var(--secondary); }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .feature-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius); padding: 36px 28px;
+    transition: all 0.3s;
+  }
+  .feature-card:hover {
+    background: rgba(255,107,53,0.1); border-color: rgba(255,107,53,0.3);
+    transform: translateY(-4px);
+  }
+  .feature-icon {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: linear-gradient(135deg, rgba(255,107,53,0.25), rgba(255,107,53,0.1));
+    border: 1px solid rgba(255,107,53,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; margin-bottom: 20px;
+  }
+  .feature-title { font-size: 1.15rem; font-weight: 800; color: white; margin-bottom: 10px; }
+  .feature-desc { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.65; font-weight: 600; }
+
+  /* ===== CATEGORIES ===== */
+  #categories { background: var(--surface-2); }
+  .categories-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  }
+  .category-card {
+    background: white; border-radius: var(--radius);
+    padding: 32px 20px; text-align: center;
+    box-shadow: var(--shadow-sm); border: 2px solid transparent;
+    cursor: pointer; transition: all 0.3s; text-decoration: none;
+    display: block;
+  }
+  .category-card:hover {
+    border-color: var(--primary); transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+  }
+  .category-emoji { font-size: 3rem; margin-bottom: 14px; display: block; }
+  .category-name { font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 6px; }
+  .category-count {
+    display: inline-block; background: var(--surface-3); color: var(--primary);
+    font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: var(--radius-pill);
+  }
+
+  /* ===== SERVICES ===== */
+  #services { background: white; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .service-card {
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow-sm); transition: all 0.3s;
+    cursor: pointer; position: relative;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .service-img {
+    height: 200px; display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; position: relative; overflow: hidden;
+  }
+  .service-img-grooming { background: linear-gradient(135deg, #FFF3E0, #FFE0B2); }
+  .service-img-vet { background: linear-gradient(135deg, #E3F2FD, #BBDEFB); }
+  .service-img-adoption { background: linear-gradient(135deg, #FCE4EC, #F8BBD9); }
+  .service-body { padding: 24px; }
+  .service-tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--primary); background: rgba(255,107,53,0.1);
+    padding: 4px 10px; border-radius: var(--radius-pill); margin-bottom: 10px;
+  }
+  .service-title { font-size: 1.2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 8px; }
+  .service-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; font-weight: 600; }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--primary); font-weight: 800; font-size: 0.88rem;
+    margin-top: 14px; text-decoration: none; transition: gap 0.2s;
+  }
+  .service-link:hover { gap: 10px; }
+
+  /* ===== APP DOWNLOAD ===== */
+  #app {
+    background: linear-gradient(135deg, var(--secondary) 0%, #16213E 50%, #0F3460 100%);
+    position: relative; overflow: hidden;
+  }
+  .app-blob {
+    position: absolute; border-radius: 50%; pointer-events: none;
+    filter: blur(80px); opacity: 0.2;
+  }
+  .app-blob-1 { width: 400px; height: 400px; background: var(--primary); top: -100px; right: 10%; }
+  .app-blob-2 { width: 300px; height: 300px; background: var(--accent); bottom: -80px; left: 5%; }
+
+  .app-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 60px; position: relative; z-index: 1;
+  }
+  .app-content { max-width: 520px; }
+  .app-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,209,102,0.15); border: 1px solid rgba(255,209,102,0.3);
+    border-radius: var(--radius-pill); padding: 6px 16px;
+    font-size: 0.78rem; font-weight: 800; color: var(--accent);
+    margin-bottom: 24px; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .app-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 800; color: white; margin-bottom: 16px; line-height: 1.15;
+  }
+  .app-title em { color: var(--accent); font-style: normal; }
+  .app-desc { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.7; font-weight: 600; margin-bottom: 36px; }
+
+  .app-features { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+  .app-feature {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.9rem; font-weight: 700; color: rgba(255,255,255,0.8);
+  }
+  .app-feature-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--primary); flex-shrink: 0;
+  }
+
+  .store-badges { display: flex; gap: 16px; flex-wrap: wrap; }
+  .store-badge {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px; padding: 14px 20px;
+    text-decoration: none; transition: all 0.25s; color: white;
+    min-width: 180px;
+  }
+  .store-badge:hover {
+    background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3);
+    transform: translateY(-3px);
+  }
+  .store-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .store-text .st1 { font-size: 0.68rem; color: rgba(255,255,255,0.6); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+  .store-text .st2 { font-size: 1rem; font-weight: 900; }
+
+  .app-phone-visual {
+    flex-shrink: 0; width: 280px; position: relative;
+  }
+  .phone-mockup {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 40px; padding: 20px 16px;
+    position: relative;
+  }
+  .phone-screen {
+    background: linear-gradient(145deg, #FFF8F5, #FFE8D6);
+    border-radius: 28px; padding: 20px; min-height: 380px;
+    overflow: hidden; position: relative;
+  }
+  .phone-notch {
+    width: 80px; height: 8px; background: var(--secondary);
+    border-radius: 4px; margin: 0 auto 16px;
+  }
+  .phone-app-header {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+  }
+  .phone-app-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  }
+  .phone-app-name { font-size: 0.85rem; font-weight: 900; color: var(--text-primary); }
+  .phone-search {
+    background: white; border-radius: 10px; padding: 8px 12px;
+    font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 14px;
+    border: 1px solid var(--border); font-weight: 600;
+  }
+  .phone-product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .phone-product {
+    background: white; border-radius: 10px; padding: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .phone-product .pimg { font-size: 1.6rem; text-align: center; margin-bottom: 4px; }
+  .phone-product .pname { font-size: 0.62rem; font-weight: 800; color: var(--text-primary); }
+  .phone-product .pprice { font-size: 0.62rem; font-weight: 800; color: var(--primary); margin-top: 2px; }
+
+  /* ===== TESTIMONIALS ===== */
+  #reviews { background: var(--surface-2); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .review-card {
+    background: white; border-radius: var(--radius);
+    padding: 32px; box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border); transition: all 0.3s;
+  }
+  .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .review-stars { color: var(--accent); font-size: 1rem; margin-bottom: 16px; letter-spacing: 2px; }
+  .review-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; font-weight: 600; margin-bottom: 20px; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .review-name { font-size: 0.9rem; font-weight: 800; color: var(--text-primary); }
+  .review-location { font-size: 0.75rem; color: var(--text-secondary); font-weight: 600; }
+
+  /* ===== ABOUT ===== */
+  #about { background: white; }
+  .about-inner { display: flex; align-items: center; gap: 80px; }
+  .about-content { flex: 1; }
+  .about-visual { flex: 1; }
+  .about-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 36px; }
+  .about-stat-card {
+    background: var(--surface-2); border-radius: var(--radius-sm);
+    padding: 20px; border-left: 4px solid var(--primary);
+  }
+  .about-stat-card .num { font-size: 2rem; font-weight: 900; color: var(--primary); }
+  .about-stat-card .lbl { font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-top: 2px; }
+
+  .about-map-card {
+    background: linear-gradient(135deg, #FFF8F5, #FFE8D6);
+    border-radius: var(--radius); padding: 40px; text-align: center;
+    box-shadow: var(--shadow-md); position: relative; overflow: hidden;
+  }
+  .about-map-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff6b35' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .location-pin { font-size: 3.5rem; margin-bottom: 16px; position: relative; }
+  .location-name { font-size: 1.4rem; font-weight: 900; color: var(--text-primary); margin-bottom: 8px; }
+  .location-address { font-size: 0.9rem; color: var(--text-secondary); font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
+  .contact-items { display: flex; flex-direction: column; gap: 10px; text-align: left; }
+  .contact-item {
+    display: flex; align-items: center; gap: 10px;
+    background: white; border-radius: 10px; padding: 12px 16px;
+    font-size: 0.88rem; font-weight: 700; color: var(--text-primary);
+    text-decoration: none; transition: all 0.2s;
+    border: 1px solid var(--border);
+  }
+  .contact-item:hover { background: var(--primary); color: white; }
+  .contact-item .ci-icon { font-size: 1.1rem; }
+
+  /* ===== PRIVACY ===== */
+  #privacy { background: var(--surface-2); }
+  .privacy-container {
+    max-width: 800px; margin: 0 auto;
+    background: white; border-radius: var(--radius);
+    padding: 48px; box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+  }
+  .privacy-header {
+    text-align: center; padding-bottom: 32px;
+    border-bottom: 2px solid var(--surface-3); margin-bottom: 36px;
+  }
+  .privacy-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,107,53,0.08); border: 1px solid rgba(255,107,53,0.2);
+    border-radius: var(--radius-pill); padding: 6px 16px;
+    font-size: 0.75rem; font-weight: 800; color: var(--primary);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px;
+  }
+  .privacy-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 8px;
+  }
+  .privacy-date { font-size: 0.82rem; color: var(--text-secondary); font-weight: 600; }
+
+  .privacy-section { margin-bottom: 32px; }
+  .privacy-section h3 {
+    font-size: 1.05rem; font-weight: 900; color: var(--text-primary);
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .privacy-section h3::before {
+    content: ''; width: 4px; height: 18px;
+    background: var(--primary); border-radius: 2px; flex-shrink: 0;
+  }
+  .privacy-section p, .privacy-section li {
+    font-size: 0.9rem; color: var(--text-secondary); line-height: 1.75; font-weight: 600;
+  }
+  .privacy-section ul { padding-left: 20px; margin-top: 8px; }
+  .privacy-section li { margin-bottom: 6px; }
+  .privacy-contact-box {
+    background: var(--surface-3); border-radius: var(--radius-sm);
+    padding: 20px; border-left: 4px solid var(--primary);
+    margin-top: 12px;
+  }
+  .privacy-contact-box p { color: var(--text-primary); font-weight: 700; }
+  .privacy-contact-box a { color: var(--primary); font-weight: 800; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--secondary); color: white;
+    padding: 64px 5% 32px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand .logo-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .footer-brand .logo-icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  }
+  .footer-brand .logo-name { font-size: 1.1rem; font-weight: 900; }
+  .footer-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7; font-weight: 600; margin-bottom: 20px; }
+  .social-links { display: flex; gap: 10px; }
+  .social-link {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .social-link:hover { background: var(--primary); border-color: var(--primary); }
+
+  .footer-col h4 { font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col a { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 0.85rem; font-weight: 600; transition: color 0.2s; }
+  .footer-col a:hover { color: white; }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { font-size: 0.82rem; color: rgba(255,255,255,0.4); font-weight: 600; }
+  .footer-bottom a { color: var(--primary); text-decoration: none; font-weight: 700; }
+
+  /* ===== WHATSAPP FAB ===== */
+  .whatsapp-fab {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; text-decoration: none;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+    transition: all 0.25s; animation: pulse 2.5s infinite;
+  }
+  .whatsapp-fab:hover { transform: scale(1.12); box-shadow: 0 10px 28px rgba(37,211,102,0.5); }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeRight {
+    from { opacity: 0; transform: translate(40px, -50%); }
+    to { opacity: 1; transform: translate(0, -50%); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 6px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 6px 28px rgba(37,211,102,0.65); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1100px) {
+    .hero-visual { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .app-phone-visual { display: none; }
+    .app-inner { justify-content: center; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .features-grid, .categories-grid, .services-grid, .reviews-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .about-inner { flex-direction: column; }
+    .hero { padding-top: 80px; }
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+    .store-badges { flex-direction: column; }
+    .store-badge { min-width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="nav-logo-icon">🐾</div>
+    <span class="nav-logo-text">Breeders<span>Hub</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Why Us</a></li>
+    <li><a href="#categories">Shop</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#app">App</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#privacy">Privacy</a></li>
+  </ul>
+  <a href="https://breedershub.in/shop/" class="nav-cta">Shop Now →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Kashmir's #1 Pet Store</div>
+    <h1 class="hero-title">Bring Home <em>Unconditional</em> Love</h1>
+    <p class="hero-desc">Kashmir's largest pet store — 1,200+ products, professional grooming, vet care, and doorstep delivery. Everything your furry friend needs, in one place.</p>
+    <div class="hero-actions">
+      <a href="https://breedershub.in/shop/" class="btn-primary">🛒 Shop Now</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">1200+</div>
+        <div class="lbl">Products</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">5K+</div>
+        <div class="lbl">Happy Pets</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">Free</div>
+        <div class="lbl">Delivery ₹2999+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-visual-card">
+      <div class="card-pets-grid">
+        <div class="card-pet-item">
+          <div class="emoji">🐱</div>
+          <div class="name">Cats</div>
+          <div class="count">729 products</div>
+        </div>
+        <div class="card-pet-item">
+          <div class="emoji">🐶</div>
+          <div class="name">Dogs</div>
+          <div class="count">406 products</div>
+        </div>
+        <div class="card-pet-item">
+          <div class="emoji">🐇</div>
+          <div class="name">Small Animals</div>
+          <div class="count">76 products</div>
+        </div>
+        <div class="card-pet-item">
+          <div class="emoji">✂️</div>
+          <div class="name">Pet Services</div>
+          <div class="count">14 services</div>
+        </div>
+      </div>
+      <div class="card-delivery-badge">
+        <span class="icon">🚚</span>
+        <div class="text">
+          <div class="t1">Free Delivery on orders above ₹2,999</div>
+          <div class="t2">Fast & reliable across Kashmir</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-header center">
+    <div class="section-eyebrow" style="color:#FFD166;">Why Choose Us</div>
+    <h2 class="section-title" style="color:white;">Built for <span style="color:var(--primary)">Pet Parents</span></h2>
+    <p class="section-subtitle" style="color:rgba(255,255,255,0.55); margin:0 auto;">We understand what your pets need because we love animals just as much as you do.</p>
+  </div>
+  <div class="features-grid reveal">
+    <div class="feature-card">
+      <div class="feature-icon">🚀</div>
+      <div class="feature-title">Fast Doorstep Delivery</div>
+      <div class="feature-desc">400+ products delivered swiftly to your home. Free shipping on all orders above ₹2,999 anywhere in Kashmir.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✅</div>
+      <div class="feature-title">100% Quality Assured</div>
+      <div class="feature-desc">Only trusted brands — Whiskas, Royal Canin, Pedigree, Farmina, Drools and more. Never compromise on your pet's health.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏠</div>
+      <div class="feature-title">One-Stop Pet Shop</div>
+      <div class="feature-desc">Food, accessories, grooming, vet care, and adoption — everything under one roof. No need to shop anywhere else.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <div class="feature-title">Exclusive Discounts</div>
+      <div class="feature-desc">Save 10%–50% on premium pet products. Join our Super-Saver Membership for unlimited perks and early access to offers.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🐾</div>
+      <div class="feature-title">Expert Pet Guidance</div>
+      <div class="feature-desc">Our team of pet-lovers provides personalized advice on nutrition, behavior, grooming, and health care for your specific breed.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <div class="feature-title">Shop from Anywhere</div>
+      <div class="feature-desc">Download our app on Android or iOS. Browse, order, and track your pet supplies from the comfort of your home.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="section-header">
+    <div class="section-eyebrow">Shop by Pet</div>
+    <h2 class="section-title">Find Supplies for <br>Your Furry Friend</h2>
+    <p class="section-subtitle">From food to accessories, we have everything your pet needs to thrive and be happy.</p>
+  </div>
+  <div class="categories-grid reveal">
+    <a href="https://breedershub.in/pets/cats/" class="category-card">
+      <span class="category-emoji">🐱</span>
+      <div class="category-name">Cats</div>
+      <span class="category-count">729 products</span>
+    </a>
+    <a href="https://breedershub.in/pets/dogs/" class="category-card">
+      <span class="category-emoji">🐶</span>
+      <div class="category-name">Dogs</div>
+      <span class="category-count">406 products</span>
+    </a>
+    <a href="https://breedershub.in/pets/small-animals/" class="category-card">
+      <span class="category-emoji">🐇</span>
+      <div class="category-name">Small Animals</div>
+      <span class="category-count">76 products</span>
+    </a>
+    <a href="https://breedershub.in/pets/pet-services/" class="category-card">
+      <span class="category-emoji">✨</span>
+      <div class="category-name">Pet Services</div>
+      <span class="category-count">14 services</span>
+    </a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header center">
+    <div class="section-eyebrow">What We Offer</div>
+    <h2 class="section-title">Professional <span style="color:var(--primary)">Pet Services</span></h2>
+    <p class="section-subtitle">Expert care for your companions, delivered with love and professionalism right here in Kashmir.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-img service-img-grooming">✂️</div>
+      <div class="service-body">
+        <div class="service-tag">Popular</div>
+        <div class="service-title">Professional Grooming</div>
+        <div class="service-desc">Bath, trim, nail clipping, ear cleaning, and styling. Our groomers treat every pet with patience and care.</div>
+        <a href="https://breedershub.in/services/" class="service-link">Book a Session →</a>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-img service-img-vet">🩺</div>
+      <div class="service-body">
+        <div class="service-tag">Essential</div>
+        <div class="service-title">Veterinary Care</div>
+        <div class="service-desc">Vaccinations, health check-ups, spaying, neutering, microchipping, dental cleaning, and more from certified vets.</div>
+        <a href="https://breedershub.in/services/" class="service-link">Know More →</a>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-img service-img-adoption">❤️</div>
+      <div class="service-body">
+        <div class="service-tag">New</div>
+        <div class="service-title">Pet Adoption</div>
+        <div class="service-desc">Give a loving home to a pet in need. Browse our adoptable animals and find your perfect companion today.</div>
+        <a href="https://breedershub.in/pet-adoption/" class="service-link">Find a Pet →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP DOWNLOAD -->
+<section id="app">
+  <div class="app-blob app-blob-1"></div>
+  <div class="app-blob app-blob-2"></div>
+  <div class="app-inner reveal">
+    <div class="app-content">
+      <div class="app-eyebrow">📱 Now on Mobile</div>
+      <h2 class="app-title">Shop Smarter with the <em>Breeders Hub</em> App</h2>
+      <p class="app-desc">Get notified about exclusive deals, track your orders, and manage your pet's health records — all in one beautifully designed app.</p>
+      <div class="app-features">
+        <div class="app-feature"><div class="app-feature-dot"></div>Exclusive in-app discounts & early offers</div>
+        <div class="app-feature"><div class="app-feature-dot"></div>Real-time order tracking</div>
+        <div class="app-feature"><div class="app-feature-dot"></div>Browse 1,200+ products on the go</div>
+        <div class="app-feature"><div class="app-feature-dot"></div>Instant WhatsApp support</div>
+      </div>
+      <div class="store-badges">
+        <a href="#" class="store-badge" id="playstore-link">
+          <div class="store-icon">▶️</div>
+          <div class="store-text">
+            <div class="st1">Get it on</div>
+            <div class="st2">Google Play</div>
+          </div>
+        </a>
+        <a href="#" class="store-badge" id="appstore-link">
+          <div class="store-icon">🍎</div>
+          <div class="store-text">
+            <div class="st1">Download on the</div>
+            <div class="st2">App Store</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="app-phone-visual">
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="phone-notch"></div>
+          <div class="phone-app-header">
+            <div class="phone-app-icon">🐾</div>
+            <div class="phone-app-name">Breeders Hub</div>
+          </div>
+          <div class="phone-search">🔍 Search for your pet's needs...</div>
+          <div class="phone-product-grid">
+            <div class="phone-product">
+              <div class="pimg">🐟</div>
+              <div class="pname">Whiskas Tuna</div>
+              <div class="pprice">₹45</div>
+            </div>
+            <div class="phone-product">
+              <div class="pimg">🦴</div>
+              <div class="pname">Pedigree Treats</div>
+              <div class="pprice">₹120</div>
+            </div>
+            <div class="phone-product">
+              <div class="pimg">🛁</div>
+              <div class="pname">Pet Shampoo</div>
+              <div class="pprice">₹280</div>
+            </div>
+            <div class="phone-product">
+              <div class="pimg">🧸</div>
+              <div class="pname">Cat Toy Set</div>
+              <div class="pprice">₹199</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-header center">
+    <div class="section-eyebrow">Customer Love</div>
+    <h2 class="section-title">What Pet Parents Say</h2>
+    <p class="section-subtitle">Don't just take our word for it — hear from the thousands of happy pet families across Kashmir.</p>
+  </div>
+  <div class="reviews-grid reveal">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I took the Rottweiler puppy from them — it's healthy and cute. Mr. Moomin has strong knowledge about pets. Even after bringing the puppy, he was continuously guiding me on how to care for it. I recommend everyone to visit at least once!"</p>
+      <div class="review-author">
+        <div class="review-avatar">👩</div>
+        <div>
+          <div class="review-name">Zuha</div>
+          <div class="review-location">Happy Customer, Srinagar</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Most reputed, well-organized pet store with great rates and offers plus home delivery. Must visit for accessories, litter boxes, huts, and a lot more. Would give 10 stars if that option was available!"</p>
+      <div class="review-author">
+        <div class="review-avatar">👨</div>
+        <div>
+          <div class="review-name">Colombo Nicomede</div>
+          <div class="review-location">Happy Customer, Kashmir</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"My friend got a great quality pup — a gray pit bull with amazing purity. Great experience, reasonable prices with detailed guidance from diet to health care. Would recommend for anyone getting into pets!"</p>
+      <div class="review-author">
+        <div class="review-avatar">👨</div>
+        <div>
+          <div class="review-name">Taasim Ali</div>
+          <div class="review-location">Happy Customer, Kashmir</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I was fostering an orphan kitten. I called them and he picked up in 3 seconds, took my order, and delivered to my doorstep. All quality material. Best pet store in Srinagar right now. They really know their business!"</p>
+      <div class="review-author">
+        <div class="review-avatar">👨</div>
+        <div>
+          <div class="review-name">Mir Basit</div>
+          <div class="review-location">Happy Customer, Srinagar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner reveal">
+    <div class="about-content">
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="section-title">Kashmir's Complete <span style="color:var(--primary)">Pet Store</span></h2>
+      <p style="font-size:0.95rem;color:var(--text-secondary);line-height:1.75;font-weight:600;margin-bottom:16px;">
+        Breeders Hub was born with a simple intention: to be the one-stop shop for everything pet-related in Kashmir. From pet food to toys, grooming to veterinary care — we wanted to make life easier for pet parents across the valley.
+      </p>
+      <p style="font-size:0.95rem;color:var(--text-secondary);line-height:1.75;font-weight:600;">
+        We realized there was no platform where people could find the right product for their pets. So we built one. With one of the largest databases of pet care products and services in Kashmir, we curate content for your pet's specific breed and age, and source only the best from trusted brands like Whiskas, Royal Canin, Pedigree, and Farmina.
+      </p>
+      <div class="about-stats-grid">
+        <div class="about-stat-card">
+          <div class="num">1,200+</div>
+          <div class="lbl">Products Available</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="num">5,000+</div>
+          <div class="lbl">Happy Pet Families</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="num">20+</div>
+          <div class="lbl">Trusted Brands</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="num">3</div>
+          <div class="lbl">Core Services</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-visual">
+      <div class="about-map-card">
+        <div class="location-pin">📍</div>
+        <div class="location-name">Visit Our Store</div>
+        <div class="location-address">M.A Mall, Opp. Jamia Masjid<br>Hyderpora, Srinagar J&K 190014</div>
+        <div class="contact-items">
+          <a href="tel:+918825083186" class="contact-item">
+            <span class="ci-icon">📞</span> (+91) 88250 83186
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=918825083186&text=HeyNeedHelpRegarding" class="contact-item">
+            <span class="ci-icon">💬</span> WhatsApp Us
+          </a>
+          <a href="mailto:info@breedershub.in" class="contact-item">
+            <span class="ci-icon">✉️</span> info@breedershub.in
+          </a>
+          <a href="https://www.instagram.com/breedershub/" class="contact-item">
+            <span class="ci-icon">📸</span> @breedershub
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY POLICY -->
+<section id="privacy">
+  <div class="section-header center">
+    <div class="section-eyebrow">Legal</div>
+    <h2 class="section-title">Privacy Policy</h2>
+    <p class="section-subtitle">Your trust matters. Here's how we collect, use, and protect your data.</p>
+  </div>
+  <div class="privacy-container reveal">
+    <div class="privacy-header">
+      <div class="privacy-badge">🔒 Privacy Policy</div>
+      <div class="privacy-title">Breeders Hub Privacy Policy</div>
+      <div class="privacy-date">Effective Date: January 1, 2024 &nbsp;|&nbsp; Last Updated: May 2025</div>
+    </div>
+
+    <div class="privacy-section">
+      <h3>1. Introduction</h3>
+      <p>Breeders Hub ("we", "our", or "us") operates the Breeders Hub website at breedershub.in and the Breeders Hub mobile application (the "App") available on Google Play and the Apple App Store. This Privacy Policy explains how we collect, use, share, and safeguard your personal information when you use our services. By using our platform, you agree to the terms of this policy.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h3>2. Information We Collect</h3>
+      <p>We collect the following types of information:</p>
+      <ul>
+        <li><strong>Account Information:</strong> Name, email address, phone number, and password when you create an account.</li>
+        <li><strong>Order Information:</strong> Billing address, shipping address, and purchase history.</li>
+        <li><strong>Payment Information:</strong> We do not store full payment card details. Payments are securely processed by third-party payment gateways.</li>
+        <li><strong>Device & Usage Data:</strong> IP address, device type, operating system, browser type, pages visited, and app interactions.</li>
+        <li><strong>Location Data:</strong> Approximate location based on IP or GPS (with your permission) to offer location-based services and delivery estimates.</li>
+        <li><strong>Communications:</strong> Messages you send us via email, WhatsApp, or through contact forms.</li>
+        <li><strong>Pet Information:</strong> Pet type, breed, and age (optional), used to personalize product recommendations.</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h3>3. How We Use Your Information</h3>
+      <ul>
+        <li>To process and fulfill your orders and provide delivery updates.</li>
+        <li>To create and manage your user account.</li>
+        <li>To send you order confirmations, receipts, and support messages.</li>
+        <li>To personalize your shopping experience and recommend relevant products.</li>
+        <li>To send promotional offers, deals, and newsletters (you may opt out at any time).</li>
+        <li>To improve our website, app, and services based on usage patterns.</li>
+        <li>To comply with applicable legal obligations.</li>
+        <li>To detect and prevent fraud or unauthorized activity.</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h3>4. Sharing Your Information</h3>
+      <p>We do not sell your personal information. We may share your data with:</p>
+      <ul>
+        <li><strong>Service Providers:</strong> Delivery partners, payment processors, cloud hosting providers, and analytics services who act on our behalf.</li>
+        <li><strong>Legal Authorities:</strong> When required by law, court order, or government regulation.</li>
+        <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets, your data may be transferred.</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h3>5. Data Retention</h3>
+      <p>We retain your personal information for as long as your account is active or as needed to provide services, resolve disputes, and comply with legal obligations. You may request deletion of your account and data at any time by contacting us.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h3>6. Data Security</h3>
+      <p>We implement industry-standard security measures including HTTPS encryption, secure servers, and access controls to protect your data. While no system is 100% secure, we take reasonable precautions to protect your personal information from unauthorized access, disclosure, or misuse.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h3>7. Cookies & Tracking Technologies</h3>
+      <p>Our website uses cookies and similar tracking technologies to enhance your experience, remember your preferences, and analyze site traffic. You can control cookie settings through your browser. Disabling cookies may affect certain features of our site.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h3>8. Third-Party Links & Services</h3>
+      <p>Our app and website may contain links to third-party websites or services (e.g., social media, payment gateways). We are not responsible for the privacy practices of those third parties. We encourage you to review their privacy policies before sharing your information.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h3>9. Children's Privacy</h3>
+      <p>Our services are not directed at children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal data, please contact us and we will delete it promptly.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h3>10. Your Rights</h3>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Access the personal information we hold about you.</li>
+        <li>Request correction of inaccurate data.</li>
+        <li>Request deletion of your account and data.</li>
+        <li>Withdraw consent for marketing communications at any time.</li>
+        <li>Lodge a complaint with the relevant data protection authority.</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h3>11. Changes to This Policy</h3>
+      <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date. We encourage you to review this page periodically. Continued use of our services after changes constitutes your acceptance of the updated policy.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h3>12. Contact Us</h3>
+      <p>If you have any questions, concerns, or requests related to this Privacy Policy, please contact us:</p>
+      <div class="privacy-contact-box">
+        <p><strong>Breeders Hub</strong><br>
+        M.A Mall, Opp. Jamia Masjid, Hyderpora, Srinagar J&K 190014<br>
+        📧 Email: <a href="mailto:info@breedershub.in">info@breedershub.in</a><br>
+        📞 Phone: <a href="tel:+918825083186">(+91) 88250 83186</a><br>
+        💬 WhatsApp: <a href="https://api.whatsapp.com/send?phone=918825083186">Chat with us</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-wrap">
+        <div class="logo-icon">🐾</div>
+        <span class="logo-name">Breeders Hub</span>
+      </div>
+      <p>Kashmir's complete pet store — bringing the best products, services, and expert care to loving pet parents across the valley.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/breedershubkashmir/" class="social-link">📘</a>
+        <a href="https://www.instagram.com/breedershub/" class="social-link">📸</a>
+        <a href="https://twitter.com/breedershub" class="social-link">🐦</a>
+        <a href="https://www.youtube.com/channel/UCn_NqhtUyuxEdYjXHq5ekwA" class="social-link">▶️</a>
+        <a href="https://api.whatsapp.com/send?phone=918825083186" class="social-link">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="https://breedershub.in/shop/">Shop</a></li>
+        <li><a href="https://breedershub.in/pet-adoption/">Pet Adoption</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="https://breedershub.in/offers/">Offers</a></li>
+        <li><a href="https://breedershub.in/contact-us/">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Shop For</h4>
+      <ul>
+        <li><a href="https://breedershub.in/pets/cats/">Cats</a></li>
+        <li><a href="https://breedershub.in/pets/dogs/">Dogs</a></li>
+        <li><a href="https://breedershub.in/pets/small-animals/">Other Animals</a></li>
+        <li><a href="https://breedershub.in/services/">Pet Services</a></li>
+        <li><a href="https://breedershub.in/membership/">Membership</a></li>
+        <li><a href="https://breedershub.in/track-order/">Track Order</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#privacy">Privacy Policy</a></li>
+        <li><a href="https://breedershub.in/shipping-delivery/">Shipping Policy</a></li>
+        <li><a href="https://breedershub.in/refund-returns/">Returns & Refund</a></li>
+        <li><a href="https://breedershub.in/terms-of-use/">Terms & Conditions</a></li>
+        <li><a href="https://breedershub.in/faqs/">FAQs</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 <a href="https://breedershub.in">Breeders Hub</a>. Made in Kashmir with ❤️</p>
+    <p>M.A Mall, Hyderpora, Srinagar J&K 190014 · <a href="tel:+918825083186">(+91) 88250 83186</a></p>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a href="https://api.whatsapp.com/send?phone=918825083186&text=HeyNeedHelpRegarding" class="whatsapp-fab" title="Chat on WhatsApp">💬</a>
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
